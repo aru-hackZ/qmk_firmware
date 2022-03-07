@@ -26,7 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_SNAKE
 #define RGBLIGHT_EFFECT_KNIGHT
+
 #define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS_RETAIN_VAL
+
 #define RGBLIGHT_LIMIT_VAL 120
 #define RGBLIGHT_DEFAULT_HUE 100
 #define RGBLIGHT_HUE_STEP 10
