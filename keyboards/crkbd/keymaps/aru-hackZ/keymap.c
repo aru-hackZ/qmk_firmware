@@ -160,14 +160,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case KC_SPC:
     {
       // Initialize a boolean variable that keeps track
-      // of the delete key status: registered or not?
+      // of the space key status: registered or not?
       static bool tabkey_registered;
       if (record->event.pressed) {
 	// Detect the activation of either shift keys
 	if (mod_state & MOD_MASK_SHIFT) {
-	  // First temporarily canceling both shifts so that
-	  // shift isn't applied to the KC_TAB keycode
-	  del_mods(MOD_MASK_SHIFT);
+	  // If only one shift is applied, register a normal tabkey
+	  // else register a shift+tabkey
+	  if ((mod_state & MOD_MASK_SHIFT) != MOD_MASK_SHIFT) {
+	    del_mods(MOD_MASK_SHIFT);
+	  }
 	  register_code(KC_TAB);
 	  // Update the boolean variable to reflect the status of KC_TAB
 	  tabkey_registered = true;
