@@ -83,7 +83,6 @@ const rgblight_segment_t PROGMEM numbers_n_movement_rgb[] = RGBLIGHT_LAYER_SEGME
   {40, 2, HSV_PURPLE}
 );
 
-
 const rgblight_segment_t PROGMEM symbols_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
   {0,  6, HSV_BLUE},
   {27, 6, HSV_BLUE},
@@ -114,10 +113,10 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, NUMBERS_N_MOVEMENT));
-    rgblight_set_layer_state(1, layer_state_cmp(state, SYMBOLS));
-    rgblight_set_layer_state(2, layer_state_cmp(state, QMK_KEYS));
-    return state;
+  rgblight_set_layer_state(0, layer_state_cmp(state, NUMBERS_N_MOVEMENT));
+  rgblight_set_layer_state(1, layer_state_cmp(state, SYMBOLS));
+  rgblight_set_layer_state(2, layer_state_cmp(state, QMK_KEYS));
+  return state;
 }
 
 // Initialize variable holding the binary
