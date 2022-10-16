@@ -23,6 +23,8 @@
 #define NUMBERS_N_MOVEMENT 1
 #define SYMBOLS 2
 #define QMK_KEYS 3
+#define LIGHTER_HUE 90, 255, 255
+#define DARKER_HUE 110, 255, 255
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [DVORAK] = LAYOUT_split_3x6_3(
@@ -43,21 +45,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_0,    KC_8,    KC_5,    KC_2, KC_MINS,                      KC_BTN1, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_SLSH,    KC_7,    KC_4,    KC_1, KC_PLUS,                      KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
+      KC_LCTL, KC_SLSH,    KC_7,    KC_4,    KC_1, KC_PLUS,                      KC_BTN3,   TO(3), XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, _______, XXXXXXX,     KC_SPC,   MO(3), KC_RGUI
+                                          KC_LALT, _______, XXXXXXX,     KC_SPC,   MO(2), KC_RGUI // <- Reversed for ease of use
   //                                    `--------------------------'  `--------------------------'
   ),
 
   [SYMBOLS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC, XXXXXXX, KC_BSLS, KC_PIPE, KC_SLSH, XXXXXXX,                      KC_UNDS, XXXXXXX, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSPC,
+       KC_ESC, XXXXXXX, KC_BSLS, KC_PIPE, KC_SLSH, XXXXXXX,                      KC_UNDS,  KC_EQL, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_QUES, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX,                       KC_GRV, XXXXXXX, KC_MINS, KC_LBRC, KC_RBRC, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX,   MO(3),  KC_SPC,    XXXXXXX, _______, XXXXXXX
+                                          KC_LGUI,   MO(1),  KC_SPC,    XXXXXXX, _______, KC_RALT
   //                                    `--------------------------'  `--------------------------'
   ),
 
@@ -67,38 +69,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_VAI, RGB_SAI, RGB_HUI, RGB_SPI, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  BL_INC, BL_BRTG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     RGB_RMOD, RGB_VAD, RGB_SAD, RGB_HUD, RGB_SPD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  BL_DEC, BL_STEP,
+     RGB_RMOD, RGB_VAD, RGB_SAD, RGB_HUD, RGB_SPD, XXXXXXX,                      XXXXXXX,   TO(0), XXXXXXX, XXXXXXX,  BL_DEC, BL_STEP,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, _______, XXXXXXX,    XXXXXXX, _______, XXXXXXX
+                                          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
   //                                    `--------------------------'  `--------------------------'
   )
 };
 
 const rgblight_segment_t PROGMEM numbers_n_movement_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-  {0,  6, HSV_PURPLE},
-  {27, 6, HSV_PURPLE},
-  {6,  1, HSV_PURPLE},
-  {33, 1, HSV_PURPLE},
-  {13, 2, HSV_PURPLE},
-  {40, 2, HSV_PURPLE}
+  {0,  6, LIGHTER_HUE},
+  {27, 6, LIGHTER_HUE},
+  {6,  1, LIGHTER_HUE},
+  {33, 1, LIGHTER_HUE},
+  {13, 2, LIGHTER_HUE},
+  {40, 2, LIGHTER_HUE}
 );
 
 const rgblight_segment_t PROGMEM symbols_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+  {0,  6, DARKER_HUE},
+  {27, 6, DARKER_HUE},
+  {6,  1, DARKER_HUE},
+  {33, 1, DARKER_HUE},
+  {13, 2, DARKER_HUE},
+  {40, 2, DARKER_HUE}
+);
+
+const rgblight_segment_t PROGMEM qmk_keys_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
   {0,  6, HSV_BLUE},
   {27, 6, HSV_BLUE},
   {6,  1, HSV_BLUE},
   {33, 1, HSV_BLUE},
   {13, 2, HSV_BLUE},
   {40, 2, HSV_BLUE}
-);
-
-const rgblight_segment_t PROGMEM qmk_keys_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-  {0,  6, HSV_ORANGE},
-  {27, 6, HSV_ORANGE},
-  {6,  1, HSV_ORANGE},
-  {33, 1, HSV_ORANGE},
-  {13, 2, HSV_ORANGE},
-  {40, 2, HSV_ORANGE}
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
